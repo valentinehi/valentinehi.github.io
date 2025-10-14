@@ -3,6 +3,10 @@ permalink: /about/
 title: "About"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+Hello! I’m Valentine Indieka, a Computer Science graduate who loves turning ideas into digital solutions.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+My journey into technology started long before I ever wrote my first line of code — I’ve always enjoyed mending things, especially software, and figuring out how they work under the hood. That curiosity has grown into a passion for building systems that simplify how people work and interact with technology. I’ve developed web applications using PHP, JavaScript, HTML, and MySQL, and I’m always exploring new tools and frameworks.
+
+I’m especially interested in cybersecurity and navigating my path in the field. Look at the posts section for more details
+
+When I’m not coding, you’ll probably find me spending time with family and friends, travelling or playing netball
