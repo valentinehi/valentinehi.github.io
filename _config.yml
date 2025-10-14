@@ -58,20 +58,20 @@ plugins:
 author:
   name   : "Valentine Indieka"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  bio    : "Learning, securing systems and growing"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+      url: "https://valentinehi.github.io//"
+    - label: "Linked In"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/valentine-indieka//"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://github.com/valentinehi"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:valentineindieka@example.com"
 
 footer:
   links:
