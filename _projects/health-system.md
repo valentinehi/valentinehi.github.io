@@ -1,3 +1,15 @@
+---
+title: "Health Information System"
+layout: single
+collection: projects
+permalink: /projects/health-system/
+header:
+  image: /assets/images/health.jpg
+  caption: "Web-based patient management system 🩺"
+---
+
+
+
 # 🩺 Health Information System
 
 ### Overview
