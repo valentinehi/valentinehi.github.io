@@ -6,6 +6,7 @@ header:
   overlay_image: /assets/images/admin.png
   overlay_filter: 0.3
 tags: [Web Development, PHP, MySQL, Inventory, Pharmacy]
+author_profile: false
 ---
 
 This project helps pharmacists manage stock levels, record sales, and track suppliers efficiently.
