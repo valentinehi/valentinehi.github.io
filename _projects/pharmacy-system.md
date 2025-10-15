@@ -1,9 +1,9 @@
 ---
 title: "Pharmacy Inventory Management System"
 excerpt: "Automated stock management system for Joy’s Pharmacy with supplier orders, sales analytics, and expiry alerts."
-date: 2023-09-01
+date: 2025-03-26
 header:
-  overlay_image: /assets/images/pharmacy.jpg
+  overlay_image: /assets/images/admin.png
   overlay_filter: 0.3
 tags: [Web Development, PHP, MySQL, Inventory, Pharmacy]
 ---
