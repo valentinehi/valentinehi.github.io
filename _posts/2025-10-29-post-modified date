@@ -1,0 +1,213 @@
+# Introduction to Web Applications — HackTheBox
+
+**Author:** Valentine Indieka  
+**Date:** October 29, 2025  
+**Purpose:** A beginner-friendly guide and lab workbook for learning web application fundamentals and common vulnerabilities, designed to be used with legal, authorized labs such as Hack The Box (HTB), DVWA, OWASP Juice Shop, or local test environments.
+
+> **Important:** Only perform penetration testing or exploitation on systems you own or have explicit permission to test (e.g., HTB boxes you have access to, intentionally vulnerable local labs). Unauthorized hacking is illegal.
+
+---
+
+## Table of Contents
+1. Overview
+2. Learning Objectives
+3. Prerequisites
+4. Lab Setup (safe, local)
+5. Tools & Resources
+6. Core Concepts & Examples
+   - HTTP Basics
+   - Client vs Server
+   - Forms and Parameters
+   - Sessions & Authentication
+7. Common Vulnerabilities (conceptual)
+   - Cross-Site Scripting (XSS)
+   - SQL Injection (SQLi)
+   - Cross-Site Request Forgery (CSRF)
+   - Broken Authentication & Session Management
+   - Insecure Direct Object References (IDOR)
+   - Security Misconfigurations
+8. Guided Exercises (safe)
+9. Challenge Ideas (HTB-style, for authorized boxes)
+10. Tips for HTB Labs
+11. Further Reading & References
+12. Notes / Journal
+
+---
+
+## 1. Overview
+This document introduces core web application concepts and walks you through hands-on, legal exercises to build familiarity with attack surfaces and mitigations. It is written as a learning aid and lab notebook for HackTheBox-style practice.
+
+---
+
+## 2. Learning Objectives
+By the end of this module you should be able to:
+- Explain how web requests and responses work (HTTP methods, status codes, headers).
+- Identify common input vectors in web apps (forms, URL parameters, headers, cookies).
+- Recognize and describe common vulnerabilities at a conceptual level.
+- Set up a safe local lab (OWASP Juice Shop, DVWA, or similar) and practice exploitation/defense.
+- Implement basic mitigation techniques (input validation, parameterized queries, secure cookie flags).
+- Document findings and responsibly report vulnerabilities where applicable.
+
+---
+
+## 3. Prerequisites
+- Basic familiarity with HTML, CSS, and JavaScript.
+- Comfortable using a terminal and basic Linux commands.
+- Familiarity with Git/GitHub is helpful.
+- An environment for testing: a local VM (VirtualBox/VMware), Docker, or cloud instance you control.
+
+---
+
+## 4. Lab Setup (safe, local)
+Suggested quick setup using Docker (run on your machine — legal and isolated):
+
+1. Install Docker Desktop (or Docker Engine).
+2. Run OWASP Juice Shop (deliberately vulnerable web app):
+```bash
+docker run --rm -p 3000:3000 bkimminich/juice-shop
+# Visit http://localhost:3000 in your browser
+```
+
+3. Or run Damn Vulnerable Web App (DVWA) via an official image or LAMP stack.
+
+4. Use an intercepting proxy like **Burp Suite Community**, and a secure browser profile for testing.
+
+---
+
+## 5. Tools & Resources
+- Browser (Chrome/Firefox) with developer tools.
+- Burp Suite (Community or Professional).
+- OWASP Juice Shop, DVWA.
+- sqlmap (for automated SQLi testing in authorized labs).
+- nmap for basic network/port discovery.
+- GitHub repositories and HTB lab targets you have permission to test.
+- Learning platforms: HackTheBox, TryHackMe, OWASP WebGoat (only for authorized practice).
+
+---
+
+## 6. Core Concepts & Examples
+
+### HTTP Basics
+- Common methods: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD`, `OPTIONS`.
+- Status codes: `200 OK`, `301/302 Redirect`, `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`, `500 Internal Server Error`.
+
+### Simple HTML Form Example
+```html
+<form action="/login" method="post">
+  <input name="username" />
+  <input name="password" type="password" />
+  <button type="submit">Login</button>
+</form>
+```
+Observe what parameters are sent and how the server responds.
+
+### Sessions & Cookies
+- Session cookies often identify an authenticated user. Look for `Set-Cookie` headers and attributes like `HttpOnly`, `Secure`, `SameSite`.
+
+---
+
+## 7. Common Vulnerabilities (conceptual, no exploit recipes)
+
+### Cross-Site Scripting (XSS)
+- **What:** Injection of malicious scripts into web pages viewed by other users.
+- **Why it matters:** Can steal cookies or run actions as the victim.
+- **Mitigation:** Output encoding/escaping, Content Security Policy (CSP), input validation where appropriate.
+
+### SQL Injection (SQLi)
+- **What:** Unsanitized input is used in database queries, allowing an attacker to alter SQL.
+- **Why it matters:** Data leakage, authentication bypass, data manipulation.
+- **Mitigation:** Parameterized queries / prepared statements, ORM usage, least privilege DB accounts.
+
+### Cross-Site Request Forgery (CSRF)
+- **What:** Trick an authenticated user into performing unwanted actions.
+- **Mitigation:** CSRF tokens, SameSite cookie attribute, re-authentication for sensitive actions.
+
+### Broken Authentication
+- Weak password policies, predictable session IDs, missing account lockout.
+- Mitigation: Strong authentication, session expiration, multi-factor authentication.
+
+### Insecure Direct Object References (IDOR)
+- Directly exposing sequential IDs or file paths can allow access to other users' resources.
+- Mitigation: Access control checks on the server side.
+
+### Security Misconfigurations
+- Default credentials, verbose error messages, exposed debug endpoints.
+- Mitigation: Harden configurations, remove dev/test endpoints in production.
+
+---
+
+## 8. Guided Exercises (safe and legal)
+These are hands-on tasks to perform in your local lab or authorized HTB boxes.
+
+### Exercise A — Discover input vectors
+- Browse the app (Juice Shop).
+- Use DevTools to find forms, hidden fields, and API endpoints.
+- Document endpoint, parameters, method, and expected behavior.
+
+Template:
+```
+URL: http://localhost:3000/...
+Method: POST/GET
+Parameters: name, email, id, etc.
+Observed Response: 200 / error message
+```
+
+### Exercise B — Reflective XSS (Concept + Test)
+- Identify an input that is reflected in page output.
+- In your local lab, test with a harmless payload like `<img src=x onerror=alert('xss')>` to observe behavior.
+- Record whether output is escaped and how to fix it (e.g., use proper escaping).
+
+> Note: Always run payloads only in your lab or authorized HTB box.
+
+### Exercise C — SQLi (Concept + Safe Practice)
+- Identify parameters used in database queries (e.g., login fields, search).
+- Try non-destructive tests such as using `' OR '1'='1' -- ` only in authorized labs.
+- Focus on detection and mitigation (parameterized queries) rather than exploitation.
+
+### Exercise D — Implement Mitigations
+- Modify a small sample app to use parameterized queries or apply output encoding.
+- Demonstrate the fixed behavior in your local environment.
+
+---
+
+## 9. Challenge Ideas (HTB-style, for authorized boxes)
+- Find an endpoint vulnerable to reflected XSS and craft a proof-of-concept payload (only in authorized labs).
+- Locate a misconfigured API that leaks user data, and write a report on how to remediate.
+- Identify insecure direct object references and propose access control fixes.
+
+---
+
+## 10. Tips for HTB Labs
+- Read the lab description and rules — ensure you have permission.
+- Start with reconnaissance: enumerate visible endpoints, pages, and assets.
+- Use Burp Suite to intercept and replay requests.
+- Keep careful notes (commands executed, payloads tried, responses observed).
+- When you find a vulnerability, document it with screenshots and steps to reproduce, focusing on responsible disclosure if applicable.
+
+---
+
+## 11. Further Reading & References
+- OWASP Top Ten — https://owasp.org/www-project-top-ten/
+- OWASP Juice Shop — GitHub and official docs
+- Web Security Academy — PortSwigger
+- Hack The Box / TryHackMe learning paths (use only for authorized practice)
+
+---
+
+## 12. Notes / Journal
+Use this section to log your lab sessions. Example entry:
+
+**2025-10-29** — Juice Shop session  
+- Explored login and search endpoints.  
+- Found reflected XSS in demo search; confirmed output not escaped.  
+- Fixed sample by applying proper HTML encoding in template.
+
+---
+
+## Closing
+If you'd like, I can:
+- Generate a printable PDF from this markdown.
+- Add sample fixed/unfixed code snippets for a small PHP app.
+- Create multiple post templates (module/room) you can drop into your GitHub.io posts.
+
+Stay ethical and enjoy learning! 🔒🔍
